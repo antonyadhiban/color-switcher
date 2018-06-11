@@ -7,6 +7,18 @@ public class Player : MonoBehaviour {
 	public float jumpForce = 10f;
 
 	public Rigidbody2D rb;
+	public SpriteRenderer sr;
+
+	public string currentColor;
+
+	public Color colorRed;
+	public Color colorGreen;
+	public Color colorBlue;
+	public Color colorYellow;
+
+	void Start (){
+		SetRandomColor();
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -14,4 +26,39 @@ public class Player : MonoBehaviour {
 			rb.velocity = Vector2.up * jumpForce;
 		}
 	}
+
+	void OnTriggerEnter2D (Collider2D col){
+		if(col.tag != currentColor){
+			Debug.Log("Game Over");
+		}
+
+		if(col.tag == "ColorChanger"){
+			SetRandomColor();
+			Destroy(col.gameObject);
+			return;
+		}
+	}
+
+	void SetRandomColor(){
+		int index = Random.Range(0,4);
+		switch(index){
+			case 0:
+				currentColor = "Blue";
+				sr.color = colorBlue;
+				break;
+			case 1:
+				currentColor = "Yellow";
+				sr.color = colorYellow;
+				break;
+			case 2:
+				currentColor = "Green";
+				sr.color = colorGreen;
+				break;
+			case 3:
+				currentColor = "Red";
+				sr.color = colorRed;
+				break;
+		}
+	}
 }
+
