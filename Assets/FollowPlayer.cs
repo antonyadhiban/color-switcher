@@ -4,6 +4,7 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour {
 
 	public Transform player;
+	public GameObject newRandomLevel;
 	
 	// Update is called once per frame
 	void Update () {

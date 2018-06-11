@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -16,8 +15,19 @@ public class Player : MonoBehaviour {
 	public Color colorBlue;
 	public Color colorYellow;
 
+	public GameObject first;
+	public GameObject second;
+	public GameObject third;
+	public GameObject orb;
+
 	void Start (){
 		SetRandomColor();
+		Instantiate (first, transform.position + new Vector3(0f, 4f, 0f) , transform.rotation);
+		Instantiate (orb, transform.position + new Vector3(0f, 8f, 0f) , transform.rotation);
+		Instantiate (second, transform.position + new Vector3(0f, 12f, 0f) , transform.rotation);
+		Instantiate (orb, transform.position + new Vector3(0f, 16f, 0f) , transform.rotation);
+		Instantiate (third, transform.position + new Vector3(0f, 20f, 0f) , transform.rotation);
+		Instantiate (orb, transform.position + new Vector3(0f, 24f, 0f) , transform.rotation);
 	}
 	
 	// Update is called once per frame
@@ -30,6 +40,7 @@ public class Player : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D col){
 		if(col.tag != currentColor){
 			Debug.Log("Game Over");
+			// SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 
 		if(col.tag == "ColorChanger"){
