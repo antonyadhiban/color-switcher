@@ -32,6 +32,15 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		var touchCount = Input.touchCount;
+		for(int i = 0; i < touchCount; i++){
+			if( i > 0 ){
+				Debug.Log("Show Pause Menu");
+				gameObject.GetComponent<PauseMenu>().Pause();	
+			}
+		}
+
 		if (Input.GetMouseButtonDown(0)){
 			rb.velocity = Vector2.up * jumpForce;
 		}
@@ -40,7 +49,6 @@ public class Player : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D col){
 		if(col.tag != currentColor){
 			Debug.Log("Game Over");
-			// SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 
 		if(col.tag == "ColorChanger"){
