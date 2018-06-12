@@ -1,5 +1,6 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class FollowPlayer : MonoBehaviour {
 
@@ -11,8 +12,8 @@ public class FollowPlayer : MonoBehaviour {
 
 	public Vector3 start;
 
-	public float obstaclePosition;
-	public float orbPosition; 
+	private float obstaclePosition;
+	private float orbPosition; 
 
 	void Start () {
 		start = transform.position;
@@ -24,6 +25,11 @@ public class FollowPlayer : MonoBehaviour {
 	void Update () {
 		if (player.position.y > transform.position.y){
 			transform.position = new Vector3(transform.position.x, player.position.y, transform.position.z);
+		}
+
+		if (player.position.y < transform.position.y - 8){
+			Debug.Log("Player Fell Down -> Better Luck Next time");
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 }
