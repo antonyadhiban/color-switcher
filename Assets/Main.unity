@@ -467,7 +467,7 @@ MonoBehaviour:
   player: {fileID: 583818682}
   currentPosition: {x: 0, y: 0, z: 0}
   easy: {fileID: 1273306153455174, guid: 44f599a92e08c4d3189bc0f2428d152d, type: 2}
-  medium: {fileID: 1964222888948524, guid: 2e9aa38e5dc864b6fab50f62649bc78b, type: 2}
+  medium: {fileID: 1273306153455174, guid: 44f599a92e08c4d3189bc0f2428d152d, type: 2}
   hard: {fileID: 1273306153455174, guid: 44f599a92e08c4d3189bc0f2428d152d, type: 2}
   orb: {fileID: 1653175257194968, guid: c23024eef504c4d148367b2a1e5b0552, type: 2}
 --- !u!1 &779583692

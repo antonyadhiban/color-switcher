@@ -28,18 +28,13 @@ public class FollowPlayer : MonoBehaviour {
 			transform.position = new Vector3(transform.position.x, player.position.y, transform.position.z);
 		}
 
-		if (player.position.y < transform.position.y - 8){
+		if (player.position.y < transform.position.y - 8f){
 			Debug.Log("Player Fell Down -> Better Luck Next time");
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 
-        if (player.position.y -currentPosition.y > 4)
-        {
-            Debug.Log("Happening right now 4");
-        }
-
-        if (player.position.y - currentPosition.y > 10){
-            Debug.Log("Happening right now 10");
+        if (player.position.y - currentPosition.y > 4){
+            Debug.Log("Happening right now 8");
             GenerateRandomLevel();
             currentPosition.y = player.position.y;
         }
@@ -50,17 +45,19 @@ public class FollowPlayer : MonoBehaviour {
         Debug.Log(randomLevelIndex);
         switch(randomLevelIndex){
             case 0:
-                Instantiate(easy, new Vector3(0f, 4f, 0f), transform.rotation);
-                Instantiate(orb, new Vector3(0f, 8f, 0f), transform.rotation);
+                Instantiate(easy, new Vector3(0f, obstaclePosition, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, orbPosition, 0f), transform.rotation);
                 break;
             case 1:
-                Instantiate(medium, new Vector3(0f, 4f, 0f), transform.rotation);
-                Instantiate(orb, new Vector3(0f, 8f, 0f), transform.rotation);
+                Instantiate(medium, new Vector3(0f, obstaclePosition, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, orbPosition, 0f), transform.rotation);
                 break;
             case 2:
-                Instantiate(hard, new Vector3(0f, 4f, 0f), transform.rotation);
-                Instantiate(orb, new Vector3(0f, 8f, 0f), transform.rotation);
+                Instantiate(hard, new Vector3(0f, obstaclePosition, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, orbPosition, 0f), transform.rotation);
                 break;
         }
+        obstaclePosition = obstaclePosition + 8f;
+        orbPosition = orbPosition + 8f;
 	}
 }
