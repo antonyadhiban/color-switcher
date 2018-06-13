@@ -5,15 +5,16 @@ using UnityEngine.SceneManagement;
 public class FollowPlayer : MonoBehaviour {
 
 	public Transform player;
-	public GameObject newRandomLevel;
-
-	public GameObject sampleLevel;
-	public GameObject orb;
 
 	public Vector3 start;
 
 	private float obstaclePosition;
 	private float orbPosition; 
+
+	public GameObject easy;
+	public GameObject medium;
+	public GameObject hard;
+    public GameObject orb;
 
 	void Start () {
 		start = transform.position;
@@ -31,5 +32,23 @@ public class FollowPlayer : MonoBehaviour {
 			Debug.Log("Player Fell Down -> Better Luck Next time");
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
+	}
+
+	void GenerateRandomLevel(){
+		var randomLevelIndex = Random.Range(0,3);
+        switch(randomLevelIndex){
+            case 0:
+                Instantiate(easy, new Vector3(0f, 4f, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, 8f, 0f), transform.rotation);
+                break;
+            case 1:
+                Instantiate(medium, new Vector3(0f, 4f, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, 8f, 0f), transform.rotation);
+                break;
+            case 2:
+                Instantiate(hard, new Vector3(0f, 4f, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, 8f, 0f), transform.rotation);
+                break;
+        }
 	}
 }
