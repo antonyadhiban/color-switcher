@@ -15,19 +15,8 @@ public class Player : MonoBehaviour {
 	public Color colorBlue;
 	public Color colorYellow;
 
-	public GameObject first;
-	public GameObject second;
-	public GameObject third;
-	public GameObject orb;
-
 	void Start (){
 		SetRandomColor();
-		Instantiate (first, new Vector3(0f, 4f, 0f) , transform.rotation);
-		Instantiate (orb, new Vector3(0f, 8f, 0f) , transform.rotation);
-		Instantiate (second, new Vector3(0f, 4f, 0f) , transform.rotation);
-		Instantiate (orb, new Vector3(0f, 8f, 0f) , transform.rotation);
-		Instantiate (third, new Vector3(0f, 4f, 0f) , transform.rotation);
-		Instantiate (orb, new Vector3(0f, 8f, 0f) , transform.rotation);
 	}
 	
 	// Update is called once per frame
@@ -54,7 +43,7 @@ public class Player : MonoBehaviour {
 		}
 		if(col.tag != currentColor){
 			Debug.Log("Game Over");
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 

@@ -5,18 +5,19 @@ using UnityEngine.SceneManagement;
 public class FollowPlayer : MonoBehaviour {
 
 	public Transform player;
-	public GameObject newRandomLevel;
 
-	public GameObject sampleLevel;
-	public GameObject orb;
-
-	public Vector3 start;
+	public Vector3 currentPosition;
 
 	private float obstaclePosition;
 	private float orbPosition; 
 
+	public GameObject easy;
+	public GameObject medium;
+	public GameObject hard;
+    public GameObject orb;
+
 	void Start () {
-		start = transform.position;
+		currentPosition = player.position;
 		obstaclePosition = 4f;
 		orbPosition = 8f;
 	}
@@ -27,9 +28,36 @@ public class FollowPlayer : MonoBehaviour {
 			transform.position = new Vector3(transform.position.x, player.position.y, transform.position.z);
 		}
 
-		if (player.position.y < transform.position.y - 8){
+		if (player.position.y < transform.position.y - 8f){
 			Debug.Log("Player Fell Down -> Better Luck Next time");
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
+
+        if (player.position.y - currentPosition.y > 4){
+            Debug.Log("Happening right now 8");
+            GenerateRandomLevel();
+            currentPosition.y = player.position.y;
+        }
+	}
+
+	void GenerateRandomLevel(){
+		var randomLevelIndex = Random.Range(0,3);
+        Debug.Log(randomLevelIndex);
+        switch(randomLevelIndex){
+            case 0:
+                Instantiate(easy, new Vector3(0f, obstaclePosition, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, orbPosition, 0f), transform.rotation);
+                break;
+            case 1:
+                Instantiate(medium, new Vector3(0f, obstaclePosition, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, orbPosition, 0f), transform.rotation);
+                break;
+            case 2:
+                Instantiate(hard, new Vector3(0f, obstaclePosition, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, orbPosition, 0f), transform.rotation);
+                break;
+        }
+        obstaclePosition = obstaclePosition + 8f;
+        orbPosition = orbPosition + 8f;
 	}
 }
