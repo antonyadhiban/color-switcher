@@ -6,7 +6,7 @@ public class FollowPlayer : MonoBehaviour {
 
 	public Transform player;
 
-	public Vector3 start;
+	public Vector3 currentPosition;
 
 	private float obstaclePosition;
 	private float orbPosition; 
@@ -17,7 +17,7 @@ public class FollowPlayer : MonoBehaviour {
     public GameObject orb;
 
 	void Start () {
-		start = transform.position;
+		currentPosition = player.position;
 		obstaclePosition = 4f;
 		orbPosition = 8f;
 	}
@@ -32,10 +32,22 @@ public class FollowPlayer : MonoBehaviour {
 			Debug.Log("Player Fell Down -> Better Luck Next time");
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
+
+        if (player.position.y -currentPosition.y > 4)
+        {
+            Debug.Log("Happening right now 4");
+        }
+
+        if (player.position.y - currentPosition.y > 10){
+            Debug.Log("Happening right now 10");
+            GenerateRandomLevel();
+            currentPosition.y = player.position.y;
+        }
 	}
 
 	void GenerateRandomLevel(){
 		var randomLevelIndex = Random.Range(0,3);
+        Debug.Log(randomLevelIndex);
         switch(randomLevelIndex){
             case 0:
                 Instantiate(easy, new Vector3(0f, 4f, 0f), transform.rotation);
