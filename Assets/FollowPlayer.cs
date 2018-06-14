@@ -20,6 +20,12 @@ public class FollowPlayer : MonoBehaviour {
 		currentPosition = player.position;
 		obstaclePosition = 4f;
 		orbPosition = 8f;
+        Instantiate(easy, new Vector3(0f, obstaclePosition, 0f), transform.rotation);
+        Instantiate(orb, new Vector3(0f, orbPosition, 0f), transform.rotation);
+        Instantiate(easy, new Vector3(0f, obstaclePosition + 8f, 0f), transform.rotation);
+        Instantiate(orb, new Vector3(0f, orbPosition + 8f, 0f), transform.rotation);
+        Instantiate(medium, new Vector3(0f, obstaclePosition + 16f, 0f), transform.rotation);
+        Instantiate(orb, new Vector3(0f, orbPosition + 16f, 0f), transform.rotation);
 	}
 	
 	// Update is called once per frame
@@ -33,8 +39,9 @@ public class FollowPlayer : MonoBehaviour {
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 
-        if (player.position.y - currentPosition.y > 4){
+        if (player.position.y - currentPosition.y > 24f){
             Debug.Log("Happening right now 8");
+            GenerateRandomLevel();
             GenerateRandomLevel();
             currentPosition.y = player.position.y;
         }
@@ -47,17 +54,29 @@ public class FollowPlayer : MonoBehaviour {
             case 0:
                 Instantiate(easy, new Vector3(0f, obstaclePosition, 0f), transform.rotation);
                 Instantiate(orb, new Vector3(0f, orbPosition, 0f), transform.rotation);
+                Instantiate(easy, new Vector3(0f, obstaclePosition + 8f, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, orbPosition + 8f, 0f), transform.rotation);
+                Instantiate(medium, new Vector3(0f, obstaclePosition + 16f, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, orbPosition + 16f, 0f), transform.rotation);
                 break;
             case 1:
-                Instantiate(medium, new Vector3(0f, obstaclePosition, 0f), transform.rotation);
+                Instantiate(easy, new Vector3(0f, obstaclePosition, 0f), transform.rotation);
                 Instantiate(orb, new Vector3(0f, orbPosition, 0f), transform.rotation);
+                Instantiate(medium, new Vector3(0f, obstaclePosition + 8f, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, orbPosition + 8f, 0f), transform.rotation);
+                Instantiate(medium, new Vector3(0f, obstaclePosition + 16f, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, orbPosition + 16f, 0f), transform.rotation);
                 break;
             case 2:
                 Instantiate(hard, new Vector3(0f, obstaclePosition, 0f), transform.rotation);
                 Instantiate(orb, new Vector3(0f, orbPosition, 0f), transform.rotation);
+                Instantiate(medium, new Vector3(0f, obstaclePosition + 8f, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, orbPosition + 8f, 0f), transform.rotation);
+                Instantiate(hard, new Vector3(0f, obstaclePosition + 16f, 0f), transform.rotation);
+                Instantiate(orb, new Vector3(0f, orbPosition + 16f, 0f), transform.rotation);
                 break;
         }
-        obstaclePosition = obstaclePosition + 8f;
-        orbPosition = orbPosition + 8f;
+        obstaclePosition = obstaclePosition + 24f;
+        orbPosition = orbPosition + 24f;
 	}
 }
